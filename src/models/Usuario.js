@@ -1,6 +1,7 @@
 const { DataTypes, Model } = require("sequelize");
 const { connection } = require("../db/connection");
 
+//modelo de Bd del usuario
 class Usuario extends Model {}
 Usuario.init({
     id: {
