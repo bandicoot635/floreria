@@ -1,0 +1,11 @@
+/* body {
+    background: url(assets\img\poppies-gd4448f1c3_1920.jpg) no-repeat center center fixed;
+    background-size: cover;
+} */
+
+.image {
+    background-image: url(src/assets/img/poppies-gd4448f1c3_1920.jpg);
+    background-size: cover;
+    background-position: center;
+    ;
+}
