@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,31 +8,53 @@ import { environment } from '../../environments/environment';
 
 export class LogiService {
 
-  constructor(private http: HttpClient) { }
-
-   private URL:string="http://localhost:7777/login"
+  private URL: string = "http://localhost:7777/login";
+  private peticion: any = null;
+  private httpHeaders = new HttpHeaders({ 'content-type': 'application/json', });
+  user = {
+    username: "",
+    password: ""
+  }
+  constructor(private http: HttpClient, private route: Router) { }
 
   login(usuario: string, contrasena: string): any {
-    let user = {
-      user: usuario,
-      pass: contrasena
+    this.user.username = usuario,
+      this.user.password = contrasena
+    // let user = {
+    //   username: usuario,
+    //   password: contrasena
+    // }
+    // console.log(user);
+    this.http.post(`${this.URL}`, this.user, { headers: this.httpHeaders }).subscribe((res: any) => {
+      this.peticion = res;
+      console.log(this.peticion);
+
+
+      if (this.peticion.rol == "ADMIN") {
+        this.route.navigateByUrl('/menu')
+      } else {
+        this.route.navigateByUrl('/menu')
+      }
+      console.log(this.peticion);
+
+    });
+    return this.peticion
+  }
+
+  estaAutenticado(): boolean {
+    if (this.peticion == null) {
+      this.peticion = {
+        username:null,
+      }
+    }
+    if (this.peticion.username != this.user.username) {
+      return false
     }
 
-    const httpHeaders = new HttpHeaders({
-      'content-type': 'application/json',
-    });
-  
-
-    let peticion = null;
-    this.http.post(`${this.URL}`, user, { headers: httpHeaders }).subscribe(res => {
-      peticion = res;
-      console.log(peticion)
-
-    });
-
-    return peticion
-
+    return true
+    // return this.peticion.username && this.peticion.password ==true ;
   }
+
 }
 
 

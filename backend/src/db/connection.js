@@ -1,6 +1,7 @@
 const { Sequelize } = require('sequelize');
-const connection = new Sequelize("floreria", "root", "amdin", {
+const connection = new Sequelize("floreria", "root", "admin", {
     host: "localhost",
+    port: 3307,
     dialect: "mysql"
 });
 let synchronize = async() => {
