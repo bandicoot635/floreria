@@ -8,6 +8,8 @@ import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 
 import { FormsModule } from '@angular/forms';
+import { Menu2Component } from './components/menu2/menu2.component';
+import { AgregarNuevoComponent } from './components/agregar-nuevo/agregar-nuevo.component';
 
 
 @NgModule({
@@ -15,6 +17,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     LoginComponent,
     MenuComponent,
+    Menu2Component,
+    AgregarNuevoComponent,
   ],
   imports: [
     BrowserModule,
