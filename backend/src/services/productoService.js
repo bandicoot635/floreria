@@ -1,4 +1,4 @@
-const { crearProducto } = require("../controllers/ProductosController");
+const { crearProducto, consultarTodosLosProductos } = require("../controllers/ProductosController");
 
 const crearProductoS = async(req, res) => {
     let producto = req.body;
@@ -10,6 +10,16 @@ const crearProductoS = async(req, res) => {
     res.status(201).json(respuesta);
 }
 
+const consultarTodosLosProductosS = async(req, res) => {
+
+    let respuesta = await consultarTodosLosProductos();
+    if (respuesta.estatus == false) {
+        res.status(500).json(respuesta);
+    }
+    res.status(200).json(respuesta);
+}
+
 module.exports = {
-    crearProductoS
+    crearProductoS,
+    consultarTodosLosProductosS
 }
