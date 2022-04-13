@@ -1,0 +1,22 @@
+<h1 class=" my-4 text-center">Inventario</h1>
+<hr>
+<ng-container>
+    <table class=" table table-striped">
+        <thead>
+            <tr class="text-center ">
+                <th scope="col ">ID</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center" *ngFor="let item of nuevo">
+                <th scope="row">{{item.id}}</th>
+                <th>{{item.nombre}}</th>
+                <th>{{item.precio}}</th>
+                <th>{{item.stock}}</th>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

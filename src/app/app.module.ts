@@ -10,6 +10,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FormsModule } from '@angular/forms';
 import { Menu2Component } from './components/menu2/menu2.component';
 import { AgregarNuevoComponent } from './components/agregar-nuevo/agregar-nuevo.component';
+import { ConsultarProductoComponent } from './components/consultar-producto/consultar-producto.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AgregarNuevoComponent } from './components/agregar-nuevo/agregar-nuevo.
     MenuComponent,
     Menu2Component,
     AgregarNuevoComponent,
+    ConsultarProductoComponent,
   ],
   imports: [
     BrowserModule,

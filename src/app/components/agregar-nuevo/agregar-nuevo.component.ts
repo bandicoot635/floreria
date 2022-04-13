@@ -26,7 +26,7 @@ export class AgregarNuevoComponent implements OnInit {
     this.datos.nombre = nombre,
       this.datos.precio = parseFloat(precio),
       this.datos.stock = parseFloat(stock)
-    this.http.post(`${this.URL}`, this.datos, { headers: this.httpHeaders }).subscribe((res: any) => {
+      this.http.post(`${this.URL}`, this.datos, { headers: this.httpHeaders }).subscribe((res: any) => {
       this.peticion = res;
       console.log(this.peticion);
     })

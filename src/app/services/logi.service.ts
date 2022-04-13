@@ -15,6 +15,9 @@ export class LogiService {
     username: "",
     password: ""
   }
+
+  private URL2: string = "http://localhost:7777/productos/consultar";
+  
   constructor(private http: HttpClient, private route: Router) { }
 
   login(usuario: string, contrasena: string): any {
@@ -32,7 +35,7 @@ export class LogiService {
 
       if (this.peticion.rol == "ADMIN") {
         this.route.navigateByUrl('/menu')
-      } else {
+      } else if(this.peticion.rol == "USER"){
         this.route.navigateByUrl('/menu')
       }
       console.log(this.peticion);
@@ -53,6 +56,9 @@ export class LogiService {
 
     return true
     // return this.peticion.username && this.peticion.password ==true ;
+  }
+  getConsulta() {
+    return this.http.get(this.URL2)
   }
 
 }
