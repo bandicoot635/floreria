@@ -15,7 +15,8 @@ Producto.init({
             is: ['^([a-zA-zñ_\\-0-9])+(\\s([a-zA-zñ_\\-0-9])*)*$'],
             max: 255
         },
-        allowNull: false
+        allowNull: false,
+        unique: true
 
     },
     precio: {
@@ -25,11 +26,21 @@ Producto.init({
     stock: {
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+    createdAt: {
+        type: DataTypes.NOW,
+        allowNull: true,
+    },
+    updatedAt: {
+        type: DataTypes.NOW,
+        allowNull: true,
+
     }
+
 }, {
     sequelize: connection,
     modelName: "producto",
-    createdAt: false,
-    updatedAt: false
+    createdAt: true,
+    updatedAt: true
 });
 module.exports.Producto = Producto;
