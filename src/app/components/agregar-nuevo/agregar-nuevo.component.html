@@ -1,0 +1,29 @@
+<h4 class="text-center mt-4">Formulario para agregar nuevos productos </h4>
+<hr>
+
+
+<form autocomplete="off">
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">ID</label>
+        <input type="number" class="form-control" id="numero" placeholder="Ingresa un numero unico" aria-describedby="emailHelp">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Nombre</label>
+        <input type="text" class="form-control" placeholder="Ingresa el nombre que va a tener el producto" id="nombre" #nombre>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Precio</label>
+        <input type="number" placeholder="Ingresa el precio de venta del producto" class="form-control" id="exampleInputPassword1" #precio>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Cantidad ingresada</label>
+        <input type="number" class="form-control" placeholder="Escribe el número de productos ingresados" id="1" #cantidad>
+    </div>
+
+    <button type="submit " (click)="agregarProducto(nombre.value, precio.value, cantidad.value)" class="btn btn-primary col-12 mx-auto mt-4 ">Agregar producto</button>
+</form>
