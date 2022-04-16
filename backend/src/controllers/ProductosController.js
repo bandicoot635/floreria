@@ -1,11 +1,11 @@
 let { Producto } = require("../models/Producto");
-
+let { Entrada } = require("../models/Entrada");
 const crearProducto = async(producto) => {
     let resultado;
     try {
         let productoCreado = await Producto.create(producto, { fields: ["nombre", "precio", "stock"] });
-        resultado = { estatus: true, mensaje: "Registro exitoso", data: productoCreado, error: null }
 
+        resultado = { estatus: true, mensaje: "Registro exitoso", data: productoCreado, error: null }
     } catch (error) {
         resultado = { estatus: false, mensaje: "Error al registrar", data: resultado, error: error }
     }
@@ -15,7 +15,7 @@ const crearProducto = async(producto) => {
 const consultarTodosLosProductos = async() => {
     let resultado;
     try {
-        let productos = await Producto.findAll();
+        let productos = await Producto.findAll({ include: Entrada });
         resultado = { estatus: true, mensaje: "Consulta exitosa", data: productos, error: null }
     } catch (error) {
         resultado = { estatus: false, mensaje: "No se pudieron consultar los produtos", data: null, error: error }
