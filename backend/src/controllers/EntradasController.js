@@ -5,10 +5,14 @@ const crearEntrada = async(entrada) => {
     let resultado;
     try {
         resultado = await connection.transaction(async(transaccion) => {
+            let productoSurtido = await Producto.findOne({ where: { id: entrada.productoid }, transaction: transaccion })
+            if (productoSurtido == null || productoSurtido == undefined) {
+                return resultado = { estatus: false, mensaje: "El producto que intentas surtir no existe", data: resultado, error: { name: "Error de validacion", errors: ["El id se ese producto no existe"] } };
+            }
+            entrada.cantidadanterior = productoSurtido.dataValues.stock;
             let entradaCreadaCreada = await Entrada.create(entrada, { fields: ["productoid", "fechaentrada", "proveedor", "cantidadanterior", "cantidadsurtida"], transaction: transaccion });
-            let productoSurtido = await Producto.findOne({ where: { id: entradaCreadaCreada.dataValues.productoid }, transaction: transaccion })
             let nuevoStock = productoSurtido.dataValues.stock + entradaCreadaCreada.dataValues.cantidadsurtida;
-            console.log(nuevoStock);
+            entradaCreadaCreada.dataValues.nuevoStock = nuevoStock;
             let productoConStockActualizado = await Producto.update({ stock: nuevoStock }, { where: { id: entradaCreadaCreada.dataValues.productoid }, transaction: transaccion });
             return { estatus: true, mensaje: "Registro exitoso", data: entradaCreadaCreada, error: null }
         });

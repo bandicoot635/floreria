@@ -31,7 +31,7 @@ const actualizarProducto = async(producto) => {
         resultado = { estatus: true, mensaje: "Actualización exitosa", data: productoActualizado, error: null }
 
     } catch (error) {
-        resultado = { estatus: false, mensaje: "Error al actualizar", data: null, errors: (JSON.stringify(error) == '{}') ? error.message : error }
+        resultado = { estatus: false, mensaje: "Error al actualizar", data: null, error: (JSON.stringify(error) == '{}') ? error.message : error }
     }
     return resultado;
 }
