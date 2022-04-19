@@ -7,7 +7,7 @@ const crearProducto = async(producto) => {
 
         resultado = { estatus: true, mensaje: "Registro exitoso", data: productoCreado, error: null }
     } catch (error) {
-        resultado = { estatus: false, mensaje: "Error al registrar", data: resultado, error: error }
+        resultado = { estatus: false, mensaje: "Error al registrar", data: resultado, error: (JSON.stringify(error) == '{}') ? error.message : error }
     }
     return resultado;
 }
@@ -18,7 +18,7 @@ const consultarTodosLosProductos = async() => {
         let productos = await Producto.findAll({ include: Entrada });
         resultado = { estatus: true, mensaje: "Consulta exitosa", data: productos, error: null }
     } catch (error) {
-        resultado = { estatus: false, mensaje: "No se pudieron consultar los produtos", data: null, error: error }
+        resultado = { estatus: false, mensaje: "No se pudieron consultar los produtos", data: null, error: (JSON.stringify(error) == '{}') ? error.message : error }
     }
     return resultado;
 }

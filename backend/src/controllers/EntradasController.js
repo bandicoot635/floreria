@@ -18,7 +18,7 @@ const crearEntrada = async(entrada) => {
         });
 
     } catch (error) {
-        resultado = { estatus: false, mensaje: "Error al registrar", data: resultado, error: error }
+        resultado = { estatus: false, mensaje: "Error al registrar", data: resultado, error: (JSON.stringify(error) == '{}') ? error.message : error }
     }
     return resultado;
 }
