@@ -1,29 +1,32 @@
-<h4 class="text-center mt-4">Formulario para agregar nuevos productos </h4>
+<h4 class="text-center mt-4">Formulario para agregar o actulizar productos </h4>
 <hr>
 
-
-<form autocomplete="off">
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">ID</label>
-        <input type="number" class="form-control" id="numero" placeholder="Ingresa un numero unico" aria-describedby="emailHelp">
+        <input type="number" class="form-control" id="numero" formControlName="ID" placeholder="Ingresa un numero unico" [class.is-invalid]=" IDValido" aria-describedby="emailHelp" #id>
+        <small *ngIf="IDValido" class="text-danger">El ID es un campo obligatorio</small>
     </div>
 
     <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Nombre</label>
-        <input type="text" class="form-control" placeholder="Ingresa el nombre que va a tener el producto" id="nombre" #nombre>
+        <input type="text" formControlName="nombre" class="form-control" placeholder="Ingresa el nombre de la flor" id="nombre" [class.is-invalid]=" nombreValido" #nombre>
+        <small *ngIf="nombreValido" class="text-danger">El nombre es un campo obligatorio</small>
     </div>
 
 
     <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Precio</label>
-        <input type="number" placeholder="Ingresa el precio de venta del producto" class="form-control" id="exampleInputPassword1" #precio>
+        <input type="number" placeholder="Ingresa el precio por docena" class="form-control" formControlName="precio" [class.is-invalid]="precioValido" #precio>
+        <small *ngIf="precioValido" class="text-danger">El precio es un campo obligario</small>
     </div>
 
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Cantidad ingresada</label>
-        <input type="number" class="form-control" placeholder="Escribe el número de productos ingresados" id="1" #cantidad>
+        <label class="form-label">Cantidad ingresada</label>
+        <input formControlName="stock" type="number" [class.is-invalid]="stockValido" class="form-control" placeholder="Escribe el número de productos ingresados" id="1" #stock>
+        <small *ngIf="stockValido" class="text-danger">La cantidad es un campo obligario</small>
     </div>
 
-    <button type="submit " (click)="agregarProducto(nombre.value, precio.value, cantidad.value)" class="btn btn-primary col-12 mx-auto mt-4 ">Agregar producto</button>
+    <button type="submit " (click)="agregarProducto( id.value, nombre.value, precio.value, stock.value)" class="btn btn-primary col-12 mx-auto mt-4">Agregar producto</button>
 </form>

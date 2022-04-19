@@ -14,7 +14,7 @@
             <tr class="text-center" *ngFor="let item of nuevo">
                 <th scope="row">{{item.id}}</th>
                 <th>{{item.nombre}}</th>
-                <th>{{item.precio}}</th>
+                <th>${{item.precio}}</th>
                 <th>{{item.stock}}</th>
             </tr>
         </tbody>
