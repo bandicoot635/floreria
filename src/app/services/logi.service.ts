@@ -9,37 +9,36 @@ import { Router } from '@angular/router';
 export class LogiService {
 
   private URL: string = "http://localhost:7777/login";
-  private peticion: any = null;
+  public peticion: any = null;
   private httpHeaders = new HttpHeaders({ 'content-type': 'application/json', });
+  condicion:boolean=true
   user = {
     username: "",
     password: ""
   }
 
   private URL2: string = "http://localhost:7777/productos/consultar";
-  
+
   constructor(private http: HttpClient, private route: Router) { }
 
   login(usuario: string, contrasena: string): any {
     this.user.username = usuario,
-      this.user.password = contrasena
-    // let user = {
-    //   username: usuario,
-    //   password: contrasena
-    // }
-    // console.log(user);
+    this.user.password = contrasena
+
     this.http.post(`${this.URL}`, this.user, { headers: this.httpHeaders }).subscribe((res: any) => {
       this.peticion = res;
       console.log(this.peticion);
+      if (this.peticion.username != this.user.username) {
+         this.condicion =false
+      }
+  
 
 
       if (this.peticion.rol == "ADMIN") {
         this.route.navigateByUrl('/menu')
-      } else if(this.peticion.rol == "USER"){
-        this.route.navigateByUrl('/menu')
+      } else if (this.peticion.rol == "USER") {
+        this.route.navigateByUrl('/puntoVenta')
       }
-      console.log(this.peticion);
-
     });
     return this.peticion
   }
@@ -47,8 +46,8 @@ export class LogiService {
   estaAutenticado(): boolean {
     if (this.peticion == null) {
       this.peticion = {
-        username:null,
-      }
+        username: null,
+      } 
     }
     if (this.peticion.username != this.user.username) {
       return false
@@ -57,6 +56,7 @@ export class LogiService {
     return true
     // return this.peticion.username && this.peticion.password ==true ;
   }
+
   getConsulta() {
     return this.http.get(this.URL2)
   }

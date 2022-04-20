@@ -10,7 +10,8 @@ import { LogiService } from 'src/app/services/logi.service';
 })
 export class ConsultarProductoComponent implements OnInit {
 
-  // public respuesta={}
+  public i: number = 0
+  public nuevo: any[] = []
   public respuesta: any = {
     status: true,
     mensaje: "",
@@ -22,11 +23,6 @@ export class ConsultarProductoComponent implements OnInit {
     },
     error: null
   }
-  public i: number = 0
-  public nuevo: any []= []
- 
-
-
 
   constructor(private http: HttpClient, private api: LogiService) { }
 
@@ -38,15 +34,10 @@ export class ConsultarProductoComponent implements OnInit {
       for (this.i = 0; this.i < this.respuesta.data.length; this.i++) {
         this.nuevo[this.i] = this.respuesta.data[this.i]
       }
-
     })
+    console.log(this.nuevo)
+
   }
 
-  // hola() {
-  //   for ( this.i = 0; this.i < this.respuesta.data.length; this.i++) {
-  //     this.nuevo= this.respuesta.data[this.i]
-  //     console.log(this.respuesta);
-  //   }
-  // }
 
 }
