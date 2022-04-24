@@ -1,0 +1,41 @@
+<body  class="inventory-body">
+
+
+<!-- <div class="container fluid "> -->
+
+    <div class="modal-dialog text-center ">
+        <div class="col-sm-8 mx-auto">
+            <div class="modal-content" style="background-color: rgb(10, 1, 1); opacity: .95;">
+
+                <div class="col">
+                    <img src="assets/img/User-ssd.png" style="width: 75%;" class="mb-3 mt-4">
+                </div>
+
+                <form>
+                    <h1 style="color: aliceblue;">Inicie Sesión</h1>
+
+                    <div class="col-9 mx-auto">
+                        <input type="text" class="form-control mt-3" placeholder="Ingresa tu usuario" style=" outline: none; padding: 5px 27px;" #userName>
+                        <i class="bi bi-person-fill" style="position: absolute; top: 359px; left: 47px;"></i>
+                    </div>
+
+                    <div class="col-9 mx-auto">
+                        <input type="password" class="form-control my-3" ((keypress))="login(userName.value, password.value)" placeholder="Ingresa tu contraseña" id="password" autocomplete="off" style=" outline: none; padding: 5px 27px;" #password>
+                        <i class="bi bi-key-fill" style="position: absolute; top: 408px; left: 47px;"></i>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" class="form-check-input me-2" id="exampleCheck1" [(ngModel)]="recuerdame" name="remember-me">
+                        <label class="form-check-label" style="color: aliceblue;" for="exampleCheck1">Recuérdame</label>
+                    </div>
+
+
+                    <button type="button" (click)="login(userName.value, password.value)" class="btn btn-primary col-9  my-4 text-center">Ingresar</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+<!-- </div> -->
+
+</body>

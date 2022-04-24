@@ -6,7 +6,7 @@
 /out-tsc
 /bazel-out
 /backend/src/db/connection.js
-
+/.vscode
 # Node
 /node_modules
 npm-debug.log
