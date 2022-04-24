@@ -1,4 +1,15 @@
-.btn {
+
+.card{
+    background-color: black;
+}
+
+
+
+label{
+    color: aliceblue;
+}
+ 
+.boton {
     min-width: 130px;
     height: 40px;
     color: #fff;
@@ -12,13 +23,33 @@
     border-radius: 5px;
     border: none;
     background-size: 120% auto;
-    background-image: linear-gradient(315deg, #000428 0%, #004e92 75%);
+    background-image: linear-gradient(315deg, #833ab4 0%, #fd1d1d 50%, #fcb045);
 }
 
-.btn:hover {
+.boton:hover {
     background-position: right center;
 }
 
-.btn:active {
+.boton:active {
     top: 2px;
 }
+
+.tab-v1 .nav-tabs > .active > a, .tab-v1 .nav-tabs > .active > a:hover, .tab-v1 .nav-tabs > .active > a:focus {
+    color: #fff;
+    border: none;
+    background: #651927;
+}
+
+a{
+    color: #651927;
+    text-decoration: none;
+}
+
+/* .boton2{
+    align-items: center;
+    justify-content: center;
+}
+.cotenedo{
+
+display: flex;
+} */

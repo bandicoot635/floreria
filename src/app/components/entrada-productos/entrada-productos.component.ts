@@ -2,6 +2,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-entrada-productos',
   templateUrl: './entrada-productos.component.html',
@@ -11,52 +12,53 @@ export class EntradaProductosComponent implements OnInit {
 
   public forma!: FormGroup;
   private httpHeaders = new HttpHeaders({ 'content-type': 'application/json', });
-  private peticion: any = null;
+  public peticion: any = null;
   private URL: string = "http://localhost:7777/entradas/crear";
   public datos = {
     productoid: 0,
     proveedor: "",
-    cantidadsurtida:0,
+    cantidadsurtida: 0,
   }
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { 
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.crearFormulario()
   }
 
   ngOnInit(): void {
   }
 
-  agregarProducto(id:string, proveedor:string, cantidad:string): any {
+  agregarProducto(id: string, proveedor: string, cantidad: string): any {
     this.datos.productoid = parseFloat(id),
       this.datos.proveedor = proveedor,
       this.datos.cantidadsurtida = parseFloat(cantidad)
-    
-      this.http.post(`${this.URL}`, this.datos, { headers: this.httpHeaders }).subscribe((res: any) => {
+
+
+    this.http.post(`${this.URL}`, this.datos, { headers: this.httpHeaders }).subscribe({
+      next: (res: any) => {
         this.peticion = res;
 
-        if(this.peticion.error==null){
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Los datos han sido guardados',
-            showConfirmButton: false,
-            timer: 1500
-          })
-         }
 
-        else if(this.peticion.estatus==false){
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Algo ha salido mal',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        }
+        Swal.fire({
+          icon: 'success',
+          title: 'Los datos han sido guardados',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
-        console.log(this.peticion.error);
-        console.log(this.peticion);
-      })
+      }, error: (error: any) => {
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Algo ha salido mal',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        console.log(error);
+
+      }
+    })
+
   }
 
   crearFormulario() {
@@ -87,6 +89,5 @@ export class EntradaProductosComponent implements OnInit {
   get cantidadValido() {
     return this.forma.get('cantidadsurtida')?.invalid && this.forma.get('cantidadsurtida')?.touched
   }
-
 
 }
