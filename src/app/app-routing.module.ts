@@ -11,7 +11,7 @@ import { EntradaProductosComponent } from './components/entrada-productos/entrad
 import { ActulizarProductoComponent } from './components/actualizar-producto/actualizar-producto.component';
 import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuarios.component';
 import { Menu3Component } from './components/menu3/menu3.component';
-
+//comentario de prueba
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'menu', component: MenuComponent, canActivate: [ AuthGuard]},
