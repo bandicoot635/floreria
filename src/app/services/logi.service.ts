@@ -16,7 +16,7 @@ export class LogiService {
     username: "",
     password: ""
   }
-
+ 
   private URL2: string = "http://localhost:7777/productos/consultar";
 
   constructor(private http: HttpClient, private route: Router) { }
@@ -28,6 +28,7 @@ export class LogiService {
     this.http.post(`${this.URL}`, this.user, { headers: this.httpHeaders }).subscribe((res: any) => {
       this.peticion = res;
       console.log(this.peticion);
+      
       if (this.peticion.username != this.user.username) {
          this.condicion =false
       }

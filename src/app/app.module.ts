@@ -15,6 +15,9 @@ import { PuntoVentaComponent } from './components/punto-venta/punto-venta.compon
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { EntradaProductosComponent } from './components/entrada-productos/entrada-productos.component';
+import { ActulizarProductoComponent } from './components/actualizar-producto/actualizar-producto.component';
+import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuarios.component';
+import { Menu3Component } from './components/menu3/menu3.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { EntradaProductosComponent } from './components/entrada-productos/entrad
     ConsultarProductoComponent,
     PuntoVentaComponent,
     EntradaProductosComponent,
+    ActulizarProductoComponent,
+    CrearUsuariosComponent,
+    Menu3Component,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-agregar-nuevo',
@@ -14,12 +15,12 @@ export class AgregarNuevoComponent implements OnInit {
   public forma!: FormGroup;
   private peticion: any = null;
   datos = {
-    id:0,
+    id: 0,
     nombre: "",
     precio: 0,
     stock: 0
   }
-
+ 
   constructor(private http: HttpClient, private fb: FormBuilder) {
     this.crearFormulario()
   }
@@ -27,17 +28,39 @@ export class AgregarNuevoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  agregarProducto(ID:string, nombre: string, precio: string, stock: string): any {
-    this.datos.id=parseFloat(ID),
-    this.datos.nombre = nombre,
+  agregarProducto(ID: string, nombre: string, precio: string, stock: string): any {
+    this.datos.id = parseFloat(ID),
+      this.datos.nombre = nombre,
       this.datos.precio = parseFloat(precio),
       this.datos.stock = parseFloat(stock)
-      
-    this.http.post(`${this.URL}`, this.datos, { headers: this.httpHeaders }).subscribe((res: any) => {
-      this.peticion = res;
-      console.log(this.peticion);
+
+    this.http.post(`${this.URL}`, this.datos, { headers: this.httpHeaders }).subscribe({
+      next: (res: any) => {
+        this.peticion = res;
+        console.log(this.peticion);
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Los datos han sido guardados',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+      }, error: (error: any) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Algo ha salido mal',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        console.log(error);
+
+      }
     })
+
   }
+
 
   crearFormulario() {
     this.forma = this.fb.group({

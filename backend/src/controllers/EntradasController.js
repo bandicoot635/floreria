@@ -2,7 +2,7 @@ let { Producto } = require("../models/Producto");
 let { Entrada } = require("../models/Entrada");
 let { connection } = require("../db/connection");
 const crearEntrada = async(entrada) => {
-    let resultado;
+    let resultado; 
     try {
         resultado = await connection.transaction(async(transaccion) => {
             let productoSurtido = await Producto.findOne({ where: { id: entrada.productoid }, transaction: transaccion })
@@ -18,7 +18,7 @@ const crearEntrada = async(entrada) => {
         });
 
     } catch (error) {
-        resultado = { estatus: false, mensaje: "Error al registrar", data: resultado, error: (JSON.stringify(error) == '{}') ? error.message : error }
+        resultado = { estatus: false, mensaje: "Error al registrar", data: resultado, error: error }
     }
     return resultado;
 }

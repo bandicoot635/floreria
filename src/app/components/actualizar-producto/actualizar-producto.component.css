@@ -1,19 +1,18 @@
+
 .card{
     background-color: black;
 }
 
-h4{
-    color: aliceblue;
-}
+
 
 label{
     color: aliceblue;
 }
-
-.btn {
+ 
+.boton {
     min-width: 130px;
     height: 40px;
-    color: #fff; 
+    color: #fff;
     padding: 5px 10px;
     font-weight: bold;
     cursor: pointer;
@@ -27,10 +26,10 @@ label{
     background-image: linear-gradient(315deg, #833ab4 0%, #fd1d1d 50%, #fcb045);
 }
 
-.btn:hover {
+.boton:hover {
     background-position: right center;
 }
 
-.btn:active {
+.boton:active {
     top: 2px;
 }
