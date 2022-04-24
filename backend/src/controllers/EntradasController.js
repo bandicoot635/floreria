@@ -26,13 +26,5 @@ const crearEntrada = async(entrada) => {
 }
 
 module.exports = {
-        crearEntrada,
-    }
-    /* let producto = {
-        fkidproducto: 1,
-        proveedor: "miguel",
-        cantidadanterior: 1,
-        cantidadsurtida: 30
-    }
-
-    crearEntrada(producto) */
+    crearEntrada,
+}
