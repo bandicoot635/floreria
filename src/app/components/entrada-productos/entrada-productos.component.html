@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class=" card container mt-5">
 <h4 class="text-center mt-4">Formulario para entrada de producto</h4>
 <hr>
@@ -39,3 +40,47 @@
 <pre>
    {{forma.value|json}}
 </pre>
+=======
+<div class=" card container mt-5">
+<h4 class="display-5 text-center mt-4">Formulario para entrada de producto</h4>
+<hr>
+
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Id</label>
+        <input type="number" formControlName="productoid" class="form-control" placeholder="Ingresa el ID del producto" [class.is-invalid]="idValido" #id>
+        <small *ngIf="idValido" class="text-danger">El id es un campo obligatorio</small>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Proveedor</label>
+        <input type="text" formControlName="proveedor" class="form-control" placeholder="Ingresa el nombre del Proveedor" [class.is-invalid]="proveedorValido" #proveedor>
+        <small *ngIf="proveedorValido" class="text-danger">El provedor es un campo obligatorio</small>
+    </div>
+
+
+
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Cantidad surtida</label>
+        <input type="number" formControlName="cantidadsurtida" class="form-control" placeholder="Ingresa el número de productos a ingresar" id="nombre" [class.is-invalid]="cantidadValido" #cantidad>
+        <small *ngIf="cantidadValido" class="text-danger">La cantidad es un campo obligatorio</small>
+    </div>
+
+
+
+    <button type="submit " (click)="agregarProducto(id.value, proveedor.value, cantidad.value)" class="btn btn-primary col-12 mx-auto my-4 ">Agregar producto</button>
+</form>
+</div>
+
+<hr>
+<pre>
+    Estado formulario: {{forma.value}}
+    <br>
+    estatus: {{forma.status}}
+</pre>
+<pre>
+   {{forma.value|json}}
+</pre>
+
+>>>>>>> bb8d60a5a3946ad6a782f1941708edf150fcde49
