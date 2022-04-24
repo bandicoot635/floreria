@@ -4,11 +4,7 @@ let { connection } = require("../db/connection");
 const crearEntrada = async(entrada) => {
     let resultado;
 
-<<<<<<< HEAD
     //haha
-=======
-    //reaciones commir de ventas
->>>>>>> master
     try {
         resultado = await connection.transaction(async(transaccion) => {
             let productoSurtido = await Producto.findOne({ where: { id: entrada.productoid }, transaction: transaccion })
