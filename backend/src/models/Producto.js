@@ -1,6 +1,8 @@
 const { DataTypes, Model } = require("sequelize");
 const { connection } = require("../db/connection");
 const { Entrada } = require("./Entrada");
+const { DetalleVenta } = require("./DetalleVenta");
+
 //modelo de Bd del usuario
 class Producto extends Model {}
 Producto.init({
@@ -45,5 +47,7 @@ Producto.init({
 });
 Producto.hasMany(Entrada);
 Entrada.belongsTo(Producto);
+Producto.hasMany(DetalleVenta);
+DetalleVenta.belongsTo(Producto);
 
 module.exports.Producto = Producto;

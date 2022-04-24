@@ -3,6 +3,8 @@ let { Entrada } = require("../models/Entrada");
 let { connection } = require("../db/connection");
 const crearEntrada = async(entrada) => {
     let resultado;
+
+    //haha
     try {
         resultado = await connection.transaction(async(transaccion) => {
             let productoSurtido = await Producto.findOne({ where: { id: entrada.productoid }, transaction: transaccion })
