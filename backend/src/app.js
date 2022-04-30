@@ -10,5 +10,6 @@ app.use(require("./routes/loginroutes"));
 app.use(require("./routes/productoroutes"));
 app.use(require("./routes/entradasRoutes"));
 app.use(require("./routes/ventasRoutes"));
+app.use(require("./routes/usuarioRoutes"));
 app.listen(port);
-console.log("corriendo en puerto ", port)
+console.log("corriendo en puerto ", port);

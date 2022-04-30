@@ -17,7 +17,8 @@ Usuario.init({
         validate: {
             is: ['^([a-zA-zñ_\\-0-9]{8,200})$'],
             max: 255
-        }
+        },
+        unique: true
     },
     password: {
         type: DataTypes.STRING
