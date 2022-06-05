@@ -65,7 +65,7 @@ let registrarVenta = async(ventaCompleta) => {
                 }
                 //await ventaCabeceraRegistrada.createDetalleventas(ventaCompleta.detalle, { transaction: transaccion2 })
             } catch (error) {
-                console.log(error)
+                return resultado = { estatus: false, mensaje: "Error al registrar", data: resultado, error: (JSON.stringify(error) == '{}') ? error.message : error }
             }
             return { estatus: true, mensaje: "Registro exitoso", data: ventaCompleta, error: null }
         });
