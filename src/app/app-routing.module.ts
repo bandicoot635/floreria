@@ -12,21 +12,21 @@ import { ActulizarProductoComponent } from './components/actualizar-producto/act
 import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuarios.component';
 import { Menu3Component } from './components/menu3/menu3.component';
 //comentario de pruebagit fetch origin
-const routes: Routes = [
-  { path: 'login', component: LoginComponent},
-  { path: 'menu', component: MenuComponent, canActivate: [ AuthGuard]},
-  { path: 'menu2', component: Menu2Component, canActivate: [ AuthGuard] },
-  { path: 'menu3', component: Menu3Component, canActivate: [ AuthGuard]},
-  { path: 'agregarProducto', component: AgregarNuevoComponent, canActivate: [ AuthGuard] },
-  { path: 'entradaProducto', component: EntradaProductosComponent, canActivate: [ AuthGuard] },
-  { path: 'consultarProducto', component: ConsultarProductoComponent, canActivate: [ AuthGuard]},
-  { path: 'actualizarProducto', component: ActulizarProductoComponent, canActivate: [ AuthGuard] },
-  { path: 'puntoVenta', component: PuntoVentaComponent, canActivate: [ AuthGuard] },
-  { path: 'Usuarios', component: CrearUsuariosComponent, canActivate: [ AuthGuard]},
- 
-  { path: '**', pathMatch: 'full', redirectTo: 'login'}
-];
 
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'menu', component: MenuComponent},
+  { path: 'menu2', component: Menu2Component },
+  { path: 'menu3', component: Menu3Component },
+  { path: 'agregarProducto', component: AgregarNuevoComponent },
+  { path: 'entradaProducto', component: EntradaProductosComponent },
+  { path: 'consultarProducto', component: ConsultarProductoComponent, },
+  { path: 'actualizarProducto', component: ActulizarProductoComponent, },
+  { path: 'venta', component: PuntoVentaComponent, },
+  { path: 'usuarios', component: CrearUsuariosComponent, },
+  { path: '**', pathMatch: 'full', redirectTo: 'login' }
+];
+// , canActivate: [ AuthGuard]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

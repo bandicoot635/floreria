@@ -12,7 +12,7 @@ export class AgregarNuevoComponent implements OnInit {
 
   private httpHeaders = new HttpHeaders({ 'content-type': 'application/json', });
   private URL: string = "http://localhost:7777/productos/crear ";
-  public forma!: FormGroup;
+  public forma!: FormGroup; 
   private peticion: any = null;
   datos = {
     id: 0,
@@ -35,6 +35,7 @@ export class AgregarNuevoComponent implements OnInit {
       this.datos.stock = parseFloat(stock)
 
     this.http.post(`${this.URL}`, this.datos, { headers: this.httpHeaders }).subscribe({
+      
       next: (res: any) => {
         this.peticion = res;
         console.log(this.peticion);

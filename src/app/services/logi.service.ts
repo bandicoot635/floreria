@@ -8,58 +8,42 @@ import { Router } from '@angular/router';
 
 export class LogiService {
 
-  private URL: string = "http://localhost:7777/login";
+  private URL: string = "http://localhost:7777";
   public peticion: any = null;
   private httpHeaders = new HttpHeaders({ 'content-type': 'application/json', });
-  condicion:boolean=true
-  user = {
+  condicion: boolean = true
+  private user = {
     username: "",
     password: ""
   }
- 
-  private URL2: string = "http://localhost:7777/productos/consultar";
 
   constructor(private http: HttpClient, private route: Router) { }
 
   login(usuario: string, contrasena: string): any {
     this.user.username = usuario,
-    this.user.password = contrasena
+      this.user.password = contrasena
 
-    this.http.post(`${this.URL}`, this.user, { headers: this.httpHeaders }).subscribe((res: any) => {
+    this.http.post(`${this.URL}` + "/login", this.user, { headers: this.httpHeaders }).subscribe((res: any) => {
       this.peticion = res;
       console.log(this.peticion);
-      
-      if (this.peticion.username != this.user.username) {
-         this.condicion =false
-      }
-  
+      // console.log(this.user); //Este objeto no debe de traer el usuario y la contraseña del backend 
 
-
-      if (this.peticion.rol == "ADMIN") {
-        this.route.navigateByUrl('/menu')
-      } else if (this.peticion.rol == "USER") {
-        this.route.navigateByUrl('/puntoVenta')
+      if (this.peticion.estatus == false) { //Hay que componerlo
+        this.condicion = false
       }
+
+      (this.peticion.data.rol == "ADMIN") ? this.route.navigateByUrl('/menu') : this.route.navigateByUrl('/puntoVenta');
     });
     return this.peticion
   }
 
   estaAutenticado(): boolean {
-    if (this.peticion == null) {
-      this.peticion = {
-        username: null,
-      } 
-    }
-    if (this.peticion.username != this.user.username) {
-      return false
-    }
-
+    (this.peticion.estatus) ? this.peticion = { username: null, } : false
     return true
-    // return this.peticion.username && this.peticion.password ==true ;
   }
 
   getConsulta() {
-    return this.http.get(this.URL2)
+    return this.http.get(this.URL + "/productos/consultar")
   }
 
 }

@@ -35,7 +35,7 @@ export class ConsultarProductoComponent implements OnInit {
         this.nuevo[this.i] = this.respuesta.data[this.i]
       }
     })
-    console.log(this.nuevo)
+    console.log(this.nuevo) 
 
   }
 

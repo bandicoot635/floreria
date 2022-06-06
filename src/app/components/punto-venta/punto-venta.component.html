@@ -1,1 +1,38 @@
-<p>punto-venta works!</p>
+
+  <!-- keyup="venta()" -->
+<form (ngSubmit)="venta()" [formGroup]="profileForm">
+  <div class="d-flex mb-3 text-white mt-5">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Código del producto:</label>
+    <input class="form-control me-1" type="number" formControlName="venta">
+    <button class="btn btn-danger" type="submit" style="color: aliceblue" >Enter</button>
+    <!-- (click)="venta()" -->
+  </div>
+</form>
+
+<table class="table text-white text-center mt-5">
+
+  <thead>
+    <tr>
+      <th scope="col">Código de barras</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr class="text-center text-white" *ngFor="let item of carrito">
+      <th scope="row">{{item.id}}</th>
+      <td>Mark</td>
+      <td>$ </td>
+      <td>2</td>
+      <td>$</td>
+    </tr>
+  </tbody>
+
+</table>
+
+<footer>
+  <button class="btn btn-dark" >Pagar</button>
+</footer>

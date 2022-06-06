@@ -7,7 +7,7 @@ let login = async(user) => {
         if (usuario == null) {
             return { estatus: false, mensaje: "Usuario o contraseña incorrectos", data: null, error: { name: "Credenciales no válidas", error: ["Usuario  o contraseña no válidos"] } }
         }
-        return { estatus: true, mensaje: "Login exitoso", data: { username: usuario.username }, error: null };
+        return { estatus: true, mensaje: "Login exitoso", data: { username: usuario.username,  rol: usuario.rol }, error: null };
     } catch (error) {
         return { estatus: false, mensaje: "error al iniciar sesion", data: null, error: error }
     }
@@ -15,4 +15,4 @@ let login = async(user) => {
 
 module.exports = {
     login
-}
+} 

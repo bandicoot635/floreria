@@ -3,7 +3,6 @@ let { VentaCabecera } = require("../models/VentaCabecera");
 let { DetalleVenta } = require("../models/DetalleVenta");
 let { Op } = require("sequelize")
 let { connection } = require("../db/connection");
-//hola
 
 let registrarVenta = async(ventaCompleta) => {
     let resultado;
@@ -19,7 +18,7 @@ let registrarVenta = async(ventaCompleta) => {
                     },
                     transaction: transaccion2,
                     raw: true
-                });
+                }); 
                 let cosa = "";
                 let productosNoExistentes;
                 if (productosVendidos.length != ventaCompleta.detalle.length) {

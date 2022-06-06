@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-menu3',
@@ -13,3 +14,4 @@ export class Menu3Component implements OnInit {
   }
 
 }
+ 
