@@ -11,7 +11,7 @@ const crearProducto = async(producto) => {
     }
     return resultado;
 }
-
+ 
 const consultarTodosLosProductos = async() => {
     let resultado;
     try {

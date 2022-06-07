@@ -11,6 +11,9 @@ const registrarVentaS = async(req, res) => {
     return;
 }
 
+
+
+
 module.exports = {
     registrarVentaS
-}
+} 

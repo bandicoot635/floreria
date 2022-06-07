@@ -3,7 +3,7 @@
 <form (ngSubmit)="venta()" [formGroup]="profileForm">
   <div class="d-flex mb-3 text-white mt-5">
     <label for="inputPassword" class="col-sm-2 col-form-label">Código del producto:</label>
-    <input class="form-control me-1" type="number" formControlName="venta">
+    <input class="form-control me-1" type="number" formControlName="id">
     <button class="btn btn-danger" type="submit" style="color: aliceblue" >Enter</button>
     <!-- (click)="venta()" -->
   </div>
@@ -13,26 +13,29 @@
 
   <thead>
     <tr>
+
       <th scope="col">Código de barras</th>
       <th scope="col">Nombre</th>
       <th scope="col">Precio</th>
-      <th scope="col">Cantidad</th>
-      <th scope="col">Total</th>
     </tr>
   </thead>
 
   <tbody>
-    <tr class="text-center text-white" *ngFor="let item of carrito">
-      <th scope="row">{{item.id}}</th>
-      <td>Mark</td>
-      <td>$ </td>
-      <td>2</td>
-      <td>$</td>
+    <tr *ngFor="let item of carrito">
+
+      <th scope="row">{{item.productoid}}</th>
+      <td>{{resultado[0].nombre}}</td>
+      <td>${{resultado[0].precio}} </td>
     </tr>
   </tbody>
 
 </table>
 
-<footer>
-  <button class="btn btn-dark" >Pagar</button>
+<!-- <div class="d-flex mb-3 text-white mt-5">
+  <label for="inputPassword" class="col-sm-2 col-form-label">Monto Total</label>
+  <input class="form-control me-1" type="number" formControlName="id">
+  <button class="btn btn-danger" type="submit" style="color: aliceblue" >Enter</button>
+  -->
+<footer> 
+  <button class="btn btn-dark col-12 mx-auto my-4 " (click)="pagar()">Pagar</button>
 </footer>

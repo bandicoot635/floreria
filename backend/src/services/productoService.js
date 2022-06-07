@@ -10,7 +10,7 @@ const crearProductoS = async(req, res) => {
     if (respuesta.estatus == false) {
         res.status(500).json(respuesta);
         return;
-    }
+    } 
     res.status(201).json(respuesta);
     return;
 }

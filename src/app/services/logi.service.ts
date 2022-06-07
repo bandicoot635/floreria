@@ -46,6 +46,10 @@ export class LogiService {
     return this.http.get(this.URL + "/productos/consultar")
   }
 
+  getConsultarVenta(){
+    return this.http.get(this.URL + "/ventas/consultar")
+  }
+
 }
 
 

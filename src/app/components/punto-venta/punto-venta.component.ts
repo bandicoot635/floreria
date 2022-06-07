@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2'
+import { LogiService } from 'src/app/services/logi.service';
 
 @Component({
   selector: 'app-punto-venta',
@@ -13,34 +14,52 @@ export class PuntoVentaComponent implements OnInit {
   private httpHeaders = new HttpHeaders({ 'content-type': 'application/json', });
   private URL: string = "http://localhost:7777/ventas/registrar";
   private peticion: any = null;
-  public carrito: any[] = [];
-  private productos: any = null;
+  private cabecera: any = null;
+  public carrito: any = []
+  public respuesta: any = [];
+  public resultado: any=[];
+  private productos: any = {
+    ventascabeceraid: 0,
+    productoid: 0,
+    cantidadvendida: 0,
+    unidad: "",
+    monto: 0
+  };
   profileForm = new FormGroup({
-    venta: new FormControl(),
+    id: new FormControl(),
   })
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private api: LogiService) { }
 
   ngOnInit(): void {
+    this.api.getConsulta().subscribe((resp: any) => {
+      this.respuesta = resp;
+
+      console.log(this.respuesta);
+      //  console.log( resp.data[0].id);
+
+    })
   }
+
+
+  // this.respuesta.filter((ele:any)=> ele.data[i].id==this.profileForm.controls['id'].value)
 
   venta() {
     this.productos = {
       ventascabeceraid: 0,
-      productoid: this.profileForm.controls['venta'].value,
+      productoid: this.profileForm.controls['id'].value,
       cantidadvendida: 1,
       unidad: "pza",
       monto: 12
     }
 
+    this.resultado = this.respuesta.data.filter((war: any) => war.id == this.productos.productoid)
+    console.log(this.resultado);
 
-    console.log(this.productos.productoid);
-    this.agregarArray()
-  }
+    this.carrito.push(this.productos)
 
-  agregarArray() {
-    let cabecera = {
+    this.cabecera = {
       fechaVenta: 0,
       empresa: "floreria la flor",
       montoTotal: 10,
@@ -48,38 +67,37 @@ export class PuntoVentaComponent implements OnInit {
         this.carrito
 
     }
-    this.carrito.push(this.productos)
-    console.log(this.carrito);
-    console.log(cabecera);
-    
 
 
+    // console.log(this.carrito);
+    console.log(this.cabecera);
+  }
 
-    
-    //   this.http.post(`${this.URL}`, cabecera, { headers: this.httpHeaders }).subscribe({
-    //     next: (res: any) => {
-    //       this.peticion = res;
-    //       console.log(this.peticion);
+  pagar() {
+    this.http.post(`${this.URL}`, this.cabecera, { headers: this.httpHeaders }).subscribe({
+      next: (res: any) => {
+        this.peticion = res;
+        console.log(this.peticion);
 
-    //       Swal.fire({
-    //         icon: 'success',
-    //         title: 'La venta se a realizado correctamente',
-    //         showConfirmButton: false,
-    //         timer: 1500
-    //       })
+        Swal.fire({
+          icon: 'success',
+          title: 'La venta se a realizado correctamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
-    //     }, error: (error: any) => {
-    //       Swal.fire({
-    //         icon: 'error',
-    //         title: 'Oops...',
-    //         text: 'El producto no existe',
-    //         showConfirmButton: false,
-    //         timer: 1500
-    //       })
-    //       console.log(error);
+      }, error: (error: any) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Ah ocurrido un error',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        console.log(error);
 
-    //     }
-    //   })
+      }
+    })
   }
 
 

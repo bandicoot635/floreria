@@ -11,6 +11,7 @@ import { EntradaProductosComponent } from './components/entrada-productos/entrad
 import { ActulizarProductoComponent } from './components/actualizar-producto/actualizar-producto.component';
 import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuarios.component';
 import { Menu3Component } from './components/menu3/menu3.component';
+import { ConsultarVentasComponent } from './components/consultar-ventas/consultar-ventas.component';
 //comentario de pruebagit fetch origin
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'actualizarProducto', component: ActulizarProductoComponent, },
   { path: 'venta', component: PuntoVentaComponent, },
   { path: 'usuarios', component: CrearUsuariosComponent, },
+  { path: 'consultarVenta', component: ConsultarVentasComponent, },
   { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 // , canActivate: [ AuthGuard]
